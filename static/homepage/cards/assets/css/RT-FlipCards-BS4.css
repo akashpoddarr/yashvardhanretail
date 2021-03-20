@@ -1,0 +1,123 @@
+h1, h2, h3, h4 {
+  font-family: 'Barrio', cursive;
+}
+
+.card-title {
+  max-width: 100%;
+  font-size: 4vw;
+}
+
+.card-img, .card-img-top, .card-img-bottom {
+  min-width: 100%;
+  height: 38vh;
+  min-height: 38vh;
+}
+
+.text-white .card-img {
+  -webkit-filter: brightness(75%) saturate(50%);
+  filter: brightness(75%) saturate(50%);
+}
+
+.card-flip {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.card-flip .card {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: -webkit-transform 300ms;
+  transition: transform 300ms;
+  transition: transform 300ms, -webkit-transform 300ms;
+  transition-timing-function: linear;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.card-flip .card:first-of-type {
+  tranform: rotateY(0deg);
+}
+
+.card-flip .card:last-of-type {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+  display: flex;
+}
+
+.card-flip:hover .card:first-of-type {
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+
+.card-flip:hover .card:last-of-type {
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Barrio', cursive;
+}
+
+.card-title {
+  max-width: 100%;
+  font-size: 4vw;
+}
+
+.card-img, .card-img-top, .card-img-bottom {
+  min-width: 100%;
+  height: 38vh;
+  min-height: 38vh;
+}
+
+.text-white .card-img {
+  filter: brightness(75%) saturate(50%);
+}
+
+.card-flip {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.card-flip .card {
+  backface-visibility: hidden;
+  transition: transform 300ms;
+  transition-timing-function: linear;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.card-flip .card:first-of-type {
+  tranform: rotateY(0deg);
+}
+
+.card-flip .card:last-of-type {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+  display: flex;
+}
+
+.card-flip:hover .card:first-of-type {
+  transform: rotateY(-180deg);
+}
+
+.card-flip:hover .card:last-of-type {
+  transform: rotateY(0deg);
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+}
+
+h3 {
+  color: #fff;
+  text-align: center;
+}
+

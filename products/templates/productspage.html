@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="{% static 'homepage/products/assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'homepage/products/assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'homepage/products/assets/css/Model-Cards-1.css' %}">
+    <link rel="stylesheet" href="{% static 'homepage/products/assets/css/Sidebar-Menu-1.css' %}">
+    <link rel="stylesheet" href="{% static 'homepage/products/assets/css/Sidebar-Menu.css' %}">
+    <link rel="stylesheet" href="{% static 'homepage/products/assets/css/styles.css' %}">
+    <link href="{% static 'homepage/productcard/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'homepage/productcard/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'homepage/productcard/css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'homepage/productcard/css/price-range.css' %}" rel="stylesheet">
+    <link href="{% static 'homepage/productcard/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'homepage/productcard/css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'homepage/productcard/css/responsive.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'homepage/productcard/images/ico/favicon.ico' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+        href="{% static 'homepage/productcard/images/ico/apple-touch-icon-144-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+        href="{% static 'homepage/productcard/images/ico/apple-touch-icon-114-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+        href="{% static 'homepage/productcard/images/ico/apple-touch-icon-72-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed"
+        href="{% static 'homepage/productcard/images/ico/apple-touch-icon-57-precomposed.png' %}">
+    <style>
+        form.example input[type=text] {
+            padding: 10px;
+            font-size: 17px;
+            border: 1px solid grey;
+            float: left;
+            width: 80%;
+            background: #f1f1f1;
+        }
+
+        form.example button {
+            float: left;
+            width: 20%;
+            padding: 10px;
+            background: #2196F3;
+            color: white;
+            font-size: 17px;
+            border: 1px solid grey;
+            border-left: none;
+            cursor: pointer;
+        }
+
+        form.example button:hover {
+            background: #0b7dda;
+        }
+
+        form.example::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- contains slider, and search option  -->
+    <br><br><br>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand"> <a href="#">Home </a></li>
+                {% for category in categories %}
+                <li> <a href="/products/?category={{category.id}}">{{category.name}} </a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container-fluid"><a class="btn btn-link" role="button" id="menu-toggle" href="#menu-toggle"><i
+                        class="fa fa-bars"></i></a>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <h1>All Products&nbsp;<small></small></h1>
+                        </div>
+                        <p>Search here all products: </p>
+
+                        <form class="example" action="/action_page.php" style="margin-right: auto;max-width:800px">
+                            <input type="text" placeholder="Search.." name="search2">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contains slider, and search option ends here  -->
+
+    <!-- products box  -->
+    <h2 class="title text-center">Features Items</h2>
+
+    <div class="container mt-5">
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-3 mx-auto model-card">
+                <div class="product-image-wrapper">
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <img src="{{product.imageURL}}" alt="" />
+                            <h2>₹{{product.price}}</h2>
+                            <p>{{product.name}}</p>
+                            <p><b><u>{{product.category}}</u></b></p>
+                        </div>
+                        <div class="product-overlay">
+                            <div class="overlay-content">
+                                <h2>₹{{product.price}}</h2>
+                                <h3>{{product.quantity}}</h3>
+                                <h1>{{product.name}}</h1>
+                                    
+                                <a href="{% url 'detail' product.id %}"><h5><b><u>View Detail</u></b></h5></a>
+                                <hr>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <!-- products ends here  -->
+    <script src="{% static 'homepage/products/assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'homepage/products/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'homepage/products/assets/js/Sidebar-Menu.js' %}"></script>
+    <script src="{% static 'homepage/productcard/js/jquery.js' %}"></script>
+    <script src="{% static 'homepage/productcard/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'homepage/productcard/js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'homepage/productcard/js/price-range.js' %}"></script>
+    <script src="{% static 'homepage/productcard/js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'homepage/productcard/js/main.js' %}"></script>
+</body>
+
+</html>

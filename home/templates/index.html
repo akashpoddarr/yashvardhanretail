@@ -1,0 +1,50 @@
+{% extends "navbar.html" %}
+{% load static %}
+{% block content %}
+<marquee width="100%" direction="left" scrollamount="20" height="150px"><span style="color: #10ff18; font-size: 80px;" >
+  Best Place to get 100% pure Organic Products at yashvardhanretail !</span>
+  </marquee>
+<!-- {% static 'homepage/mainpagevideo/video.mp4'}  -->
+<div class="w-75 h-75 p-3" >
+    <div id="carouselExampleInterval" class="carousel slide w-75 h-75 p-3" data-bs-ride="carousel" style="margin-top: 100px; margin-left: 250px;" >
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img src="{% static 'homepage/navbarr/assets/img/6.jpeg' %}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="https://www.darjuv9.com/img/product/product_banner.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://www.darjuv9.com/img/banner3.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"  data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"  data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+</div>
+
+<div class="video" style="margin-top: 50px;"  >
+    <video width="2000" controls>
+        <source src="https://www.darjuv9.com/video/video.mp4" type="video/mp4">
+        Your browser does not support HTML video.
+    </video>
+</div>
+<div class="another2" >
+  {% include "featuredproducts.html" %}
+</div>
+<br>
+<div class="another">
+  {% include "cardboxes.html" %}
+  
+  
+</div>
+
+
+
+{% endblock %}

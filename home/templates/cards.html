@@ -1,0 +1,216 @@
+
+  
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+  <title>Ionic Swipe Down</title>
+
+  <link href="http://www.loringdodge.com/files/ionic.min.css" rel="stylesheet">
+  
+  <script src="https://code.ionicframework.com/collide/0.0.4/collide.js"></script>
+
+  <script src="http://www.loringdodge.com/files/ionic.bundle.min.js"></script>
+  <script src="http://www.loringdodge.com/files/ionic.swoosh.cards.js"></script>
+  <style>
+      /* CORE */
+
+swoosh-cards {
+  display: block;
+}
+
+swoosh-card {
+  position: absolute;
+  top: calc(50% - 175px);
+  left: calc(50% - 100px);
+  width: 200px;
+  height: 350px;
+  border-radius: 6px;
+  background-color: #FFF;
+  overflow: hidden;
+}
+
+swoosh-card .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  opacity: 0;
+  z-index: 11;
+}
+
+swoosh-card .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+/* DEMO */
+swoosh-card .top {
+  width: 100%;
+  height: 160px;
+  border-radius: 4px 4px 0 0;
+  overflow: hidden;
+}
+
+swoosh-card img {
+  width: 100%;
+}
+
+swoosh-card .bottom {
+  border-radius: 0 0 4px 4px;
+}
+
+swoosh-card .bottom h1 {
+  margin: 10px 0 0 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+swoosh-card .bottom p {
+  margin: 10px 15px;
+  font-size: 11px;
+}
+
+.discard {
+  position: absolute;
+  left: calc(50% - 35px);
+  bottom: 10px;
+  padding: 7px 10px;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 20px 20px 20px 20px;
+}
+
+.background-grey {
+  background-color: #333 !important;
+}
+  </style>
+</head>
+
+  <body ng-app="starter" no-scroll>
+    <ion-pane ng-controller="CardsCtrl" class="background-grey">
+
+      <ion-header-bar class="bar-default">
+        <h1 class="title">Ionic Swoosh Cards</h1>
+      </ion-header-bar>
+      <div ng-if="cards.active">
+        <swoosh-cards>
+          <swoosh-card ng-repeat="card in cards.active" on-destroy="cardDestroyed($index)">
+            <div ng-controller="CardCtrl">
+
+              <div class="top">
+                <img ng-src="{{ card.image }}" />
+              </div>
+              <div class="bottom">
+                <h1>{{ card.country }}</h1>
+                <p>{{ card.text }}</p>
+                <div class="discard" ng-click="discard(card)">DISCARD</div>
+              </div>
+            </div>
+          </swoosh-card>
+
+        </swoosh-cards>
+      </div>
+
+    </ion-pane>
+  </body>
+  <script>
+      angular.module('starter', ['ionic', 'ionic.swoosh.cards'])
+
+.directive('noScroll', function($document) {
+
+  return {
+    restrict: 'A',
+    link: function($scope, $element, $attr) {
+
+      $document.on('touchmove', function(e) {
+        e.preventDefault();
+      });
+    }
+  }
+})
+
+.controller('CardsCtrl', function($scope, $timeout) {
+
+  var cardTypes = [
+    {
+      country: 'Switzerland',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      image: 'http://c4.staticflickr.com/4/3924/18886530069_840bc7d2a5_m.jpg',
+    }, {
+      country: 'Germany',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      image: 'http://c1.staticflickr.com/1/421/19046467146_548ed09e19_m.jpg'
+    }, {
+      country: 'Belgium',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      image: 'http://c1.staticflickr.com/1/278/18452005203_a3bd2d7938_m.jpg'
+    }, {
+      country: 'France',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      image: 'http://c1.staticflickr.com/1/297/19072713565_be3113bc67_m.jpg'
+    }, {
+      country: 'France',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      image: 'http://c1.staticflickr.com/1/536/19072713515_5961d52357_m.jpg'
+    }, {
+      country: 'France',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      image: 'http://c4.staticflickr.com/4/3937/19072713775_156a560e09_m.jpg'
+    }, {
+      country: 'France',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      image: 'http://c1.staticflickr.com/1/267/19067097362_14d8ed9389_m.jpg'
+    }
+  ];
+
+  $scope.cards = {
+    master: Array.prototype.slice.call(cardTypes, 0),
+    active: Array.prototype.slice.call(cardTypes, 0),
+    discards: [],
+    liked: [],
+    disliked: []
+  }
+
+  $scope.cardDestroyed = function(index) {
+    var card = $scope.cards.active.splice(index, 1);
+    // $scope.addCard(card);
+  };
+
+  $scope.addCard = function(card) {
+    $scope.cards.active.push(angular.extend({}, card));
+  }
+
+  $scope.refreshCards = function() {
+    // Set $scope.cards to null so that directive reloads
+    $scope.cards.active = null;
+    $timeout(function() {
+      $scope.cards.active = Array.prototype.slice.call($scope.cards.master, 0);
+    });
+  }
+
+  $scope.$on('discard', function(event, element, card) {
+    // var discarded = $scope.cards.master.splice($scope.cards.master.indexOf(card), 1);
+    // $scope.cards.discards.push(discarded);
+  });
+
+})
+
+.controller('CardCtrl', function($scope) {
+
+});
+
+  </script>
+
+</html>
